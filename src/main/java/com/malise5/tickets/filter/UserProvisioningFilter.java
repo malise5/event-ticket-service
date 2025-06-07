@@ -48,8 +48,6 @@ public class UserProvisioningFilter extends OncePerRequestFilter {
             }
 
             filterChain.doFilter(request, response);
-
         }
     }
-
 }
