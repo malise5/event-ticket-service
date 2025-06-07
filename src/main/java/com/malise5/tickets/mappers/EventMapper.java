@@ -7,16 +7,25 @@ import com.malise5.tickets.dtos.CreateEventResponseDto;
 import com.malise5.tickets.dtos.CreateTicketTypeRequestDto;
 import com.malise5.tickets.entity.Event;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+import java.util.UUID;
+
+@Mapper(componentModel = "spring", 
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        imports = {UUID.class})
 public interface EventMapper {
 
     CreateTicketTypeRequest fromDto(CreateTicketTypeRequestDto createTicketTypeRequestDto);
-
-
     CreateEventRequest fromDto(CreateEventRequestDto createEventRequestDto);
-
-
+    
+    @Mapping(target = "id", source = "id", qualifiedByName = "toUUID")
     CreateEventResponseDto toDto(Event event);
+    
+    @Named("toUUID")
+    default UUID toUUID(Long id) {
+        return id != null ? UUID.nameUUIDFromBytes(id.toString().getBytes()) : null;
+    }
 }

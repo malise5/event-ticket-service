@@ -38,7 +38,7 @@ public class TicketValidation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
-    @Column(name = "ticket_id", nullable = false)
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private TicketValidationEnum status;
 
