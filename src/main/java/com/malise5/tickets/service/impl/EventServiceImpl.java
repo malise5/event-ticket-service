@@ -44,7 +44,7 @@ public class EventServiceImpl implements EventService {
                     ticketType1.setPrice(ticketType.getPrice());
                     ticketType1.setDescription(ticketType.getDescription());
                     ticketType1.setTotalAvailable(ticketType.getTotalAvailable());
-//                    ticketType1.setEvent(event);
+                    ticketType1.setEvent(event);
                     return ticketType1;
                 }).toList();
 
